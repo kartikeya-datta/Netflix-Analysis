@@ -77,6 +77,17 @@ ORDER BY CAST(REGEXP_REPLACE(duration, '[^0-9]', '', 'g') AS INT) DESC
 LIMIT 1;
 
 -- Find content added in the last 5 years
--- gives years greathan we give
 SELECT  CAST(RIGHT(date_added, 4) AS INT)  AS years FROM netflix
 WHERE  CAST(RIGHT(date_added, 4) AS INT)  >= 2019;
+
+-- gives years greathan we give
+SELECT * FROM netflix
+WHERE  TO_DATE(date_added,'Month DD,YYYY') >= CURRENT_DATE - INTERVAL'5 years'
+
+-- ALL movies directed by Yoshiyuki Tomino
+SELECT* FROM netflix
+WHERE  director LIKE'%Rajiv Chilaka%'
+SELECT* FROM netflix
+WHERE  director LIKE'%Marcus Raboy%'
+SELECT* FROM netflix
+WHERE  director ILIKE'%Yoshiyuki Tomino%';
