@@ -61,3 +61,10 @@ FROM netflix
 -- expands the countries into separate rows for better normalization
 SELECT UNNEST(STRING_TO_ARRAY(country,',')) as new_country
 FROM netflix;
+
+-- Identify the top 5 most frequent production countries in the netflix dataset
+SELECT UNNEST(STRING_TO_ARRAY(country,',')) as new_country , COUNT(*) AS new_count
+FROM netflix
+GROUP BY new_country
+ORDER BY new_count DESC
+LIMIT 5;
