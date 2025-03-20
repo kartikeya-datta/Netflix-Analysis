@@ -53,3 +53,7 @@ WHERE type='Movie' AND release_year=2020;
 SELECT country,COUNT(*) as con_count FROM netflix
 GROUP BY country
 ORDER BY con_count DESC;
+
+-- since we have mutliple countries clubbed together we will change it to individual using array
+SELECT STRING_TO_ARRAY(country,',') as new_country
+FROM netflix
