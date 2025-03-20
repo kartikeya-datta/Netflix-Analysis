@@ -132,3 +132,10 @@ ORDER BY cnt  DESC
 -- How many movies actor John Cleese appeared in last 10 years
 SELECT * FROM netflix
 WHERE casts ILIKE('%John Cleese%') AND release_year >EXTRACT(YEAR FROM CURRENT_DATE) - 10
+
+--  Find the Top 10 Actors Who Have Appeared in the Highest Number of Movies Produced in India
+SELECT UNNEST(STRING_TO_ARRAY(casts,',')) AS CST, COUNT(*) AS CNT FROM netflix
+WHERE country ILIKE('%India%')
+GROUP BY CST
+ORDER BY CNT DESC
+LIMIT 10
