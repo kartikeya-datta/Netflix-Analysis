@@ -91,3 +91,12 @@ SELECT* FROM netflix
 WHERE  director LIKE'%Marcus Raboy%'
 SELECT* FROM netflix
 WHERE  director ILIKE'%Yoshiyuki Tomino%';
+
+--  list directors and counts how many movies or shows they have directed
+SELECT director, COUNT(*) AS SUJ FROM netflix
+GROUP BY director
+ORDER BY SUJ DESC;
+
+-- all tv showsmore than 5 seasons
+SELECT*FROM netflix
+WHERE type='TV Show' AND CAST(SPLIT_PART(duration, ' ' ,1) AS INT) >=5;
