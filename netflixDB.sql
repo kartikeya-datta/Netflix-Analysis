@@ -100,3 +100,8 @@ ORDER BY SUJ DESC;
 -- all tv showsmore than 5 seasons
 SELECT*FROM netflix
 WHERE type='TV Show' AND CAST(SPLIT_PART(duration, ' ' ,1) AS INT) >=5;
+
+-- count number of content items in each gerne
+SELECT  UNNEST(STRING_TO_ARRAY(listed_in,',')) as gerne, COUNT(show_id)
+FROM netflix
+GROUP BY gerne;
