@@ -123,3 +123,8 @@ WHERE type='Movie' and listed_in ILIKE'%Documentaries%'
 -- List all content with out dierector
 SELECT*FROM netflix
 WHERE director IS NULL
+
+-- How many movies actor John Cleese appeared in last 10 years
+SELECT UNNEST(STRING_TO_ARRAY(casts,',')) AS CRUE,COUNT(*) AS cnt FROM netflix
+GROUP BY CRUE
+ORDER BY cnt  DESC
