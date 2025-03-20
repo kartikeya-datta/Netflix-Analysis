@@ -124,7 +124,11 @@ WHERE type='Movie' and listed_in ILIKE'%Documentaries%'
 SELECT*FROM netflix
 WHERE director IS NULL
 
--- How many movies actor John Cleese appeared in last 10 years
+-- How many times each cast member appears, and then orders the results by the most frequent cast members
 SELECT UNNEST(STRING_TO_ARRAY(casts,',')) AS CRUE,COUNT(*) AS cnt FROM netflix
 GROUP BY CRUE
 ORDER BY cnt  DESC
+
+-- How many movies actor John Cleese appeared in last 10 years
+SELECT * FROM netflix
+WHERE casts ILIKE('%John Cleese%') AND release_year >EXTRACT(YEAR FROM CURRENT_DATE) - 10
