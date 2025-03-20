@@ -34,7 +34,14 @@ SELECT casts, title
 FROM netflix
 WHERE casts IS NULL;
 
--- 1 count number of tv shows vs movie
+-- Count number of tv shows vs movie
 SELECT type, COUNT(type) as movie_count
 FROM netflix
 GROUP BY type;
+
+
+-- Common ratings for tvshows and movies
+SELECT type, COUNT(type) as rd,rating
+FROM netflix
+GROUP BY type,rating
+ORDER BY rd DESC;
