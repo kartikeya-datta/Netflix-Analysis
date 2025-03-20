@@ -139,3 +139,26 @@ WHERE country ILIKE('%India%')
 GROUP BY CST
 ORDER BY CNT DESC
 LIMIT 10
+
+--  Count how many pieces of content fall into each category ("Good" or "Bad").
+SELECT 
+    category,
+    COUNT(*) AS content_count
+FROM (
+    SELECT 
+        CASE 
+            WHEN description ILIKE '%kill%' OR description ILIKE '%violence%' THEN 'Bad'
+            ELSE 'Good'
+        END AS category
+    FROM netflix
+) AS categorized_content
+GROUP BY category;
+
+--  Top 5 contents watched in India and the countries of origin
+SELECT 
+    title, 
+    country
+FROM netflix
+WHERE country ILIKE '%India%'
+ORDER BY views DESC
+LIMIT 5;
