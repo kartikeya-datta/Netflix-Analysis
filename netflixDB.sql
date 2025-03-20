@@ -119,3 +119,7 @@ ORDER BY avg_content DESC;
 -- List all movies that are documentary
 SELECT* FROM netflix
 WHERE type='Movie' and listed_in ILIKE'%Documentaries%'
+
+-- List all content with out dierector
+SELECT*FROM netflix
+WHERE director IS NULL
