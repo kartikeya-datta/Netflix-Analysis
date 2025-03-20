@@ -68,3 +68,10 @@ FROM netflix
 GROUP BY new_country
 ORDER BY new_count DESC
 LIMIT 5;
+
+-- Identify the longest movie in the dataset
+SELECT title, duration
+FROM netflix
+WHERE type = 'Movie'
+ORDER BY CAST(REGEXP_REPLACE(duration, '[^0-9]', '', 'g') AS INT) DESC
+LIMIT 1;
