@@ -57,3 +57,7 @@ ORDER BY con_count DESC;
 -- since we have mutliple countries clubbed together we will change it to individual using array
 SELECT STRING_TO_ARRAY(country,',') as new_country
 FROM netflix
+
+-- expands the countries into separate rows for better normalization
+SELECT UNNEST(STRING_TO_ARRAY(country,',')) as new_country
+FROM netflix;
