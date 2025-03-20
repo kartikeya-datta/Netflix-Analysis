@@ -48,3 +48,8 @@ ORDER BY rd DESC;
 -- List the movies released in 2020
 SELECT * FROM netflix
 WHERE type='Movie' AND release_year=2020;
+
+-- Top 5 countires which has most content in netflix
+SELECT country,COUNT(*) as con_count FROM netflix
+GROUP BY country
+ORDER BY con_count DESC;
