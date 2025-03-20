@@ -105,3 +105,13 @@ WHERE type='TV Show' AND CAST(SPLIT_PART(duration, ' ' ,1) AS INT) >=5;
 SELECT  UNNEST(STRING_TO_ARRAY(listed_in,',')) as gerne, COUNT(show_id)
 FROM netflix
 GROUP BY gerne;
+
+-- Find each year and average number of content released in India
+SELECT
+		EXTRACT(YEAR FROM(TO_DATE(date_added,'Month,DD,YYYY'))) AS years,
+		COUNT(*),
+		ROUND(COUNT(*)::numeric/(SELECT COUNT(*) FROM netflix WHERE country='India')::numeric*100,2) AS avg_content
+FROM netflix
+WHERE country ILIKE'%India%'
+GROUP BY years
+ORDER BY avg_content DESC;
