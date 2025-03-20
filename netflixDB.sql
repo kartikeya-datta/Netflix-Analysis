@@ -115,3 +115,7 @@ FROM netflix
 WHERE country ILIKE'%India%'
 GROUP BY years
 ORDER BY avg_content DESC;
+
+-- List all movies that are documentary
+SELECT* FROM netflix
+WHERE type='Movie' and listed_in ILIKE'%Documentaries%'
