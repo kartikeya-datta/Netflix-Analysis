@@ -75,3 +75,8 @@ FROM netflix
 WHERE type = 'Movie'
 ORDER BY CAST(REGEXP_REPLACE(duration, '[^0-9]', '', 'g') AS INT) DESC
 LIMIT 1;
+
+-- Find content added in the last 5 years
+-- gives years greathan we give
+SELECT  CAST(RIGHT(date_added, 4) AS INT)  AS years FROM netflix
+WHERE  CAST(RIGHT(date_added, 4) AS INT)  >= 2019;
