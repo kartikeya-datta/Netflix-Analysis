@@ -39,9 +39,12 @@ SELECT type, COUNT(type) as movie_count
 FROM netflix
 GROUP BY type;
 
-
 -- Common ratings for tvshows and movies
 SELECT type, COUNT(type) as rd,rating
 FROM netflix
 GROUP BY type,rating
 ORDER BY rd DESC;
+
+-- List the movies released in 2020
+SELECT * FROM netflix
+WHERE type='Movie' AND release_year=2020;
